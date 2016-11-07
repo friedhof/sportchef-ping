@@ -1,0 +1,63 @@
+/*
+ * SportChef – Sports Competition Management Software
+ * Copyright (C) 2016 Marcus Fihlon
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+group 'ch.sportchef'
+version '2.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3'
+    }
+}
+
+jacocoTestReport {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
+dependencies {
+    compile (
+            'com.sparkjava:spark-core:2.5.1',    // amazing micro framework
+            'org.projectlombok:lombok:1.16.10',  // clean-up your source files
+            'org.slf4j:slf4j-api:1.7.21',        // log framework abstraction
+            'org.slf4j:slf4j-simple:1.7.21'      // just logs to the console
+    )
+    testCompile (
+            'junit:junit:4.12',                  // THE testing framework
+            'org.hamcrest:java-hamcrest:2.0.0.0' // write flexible assertions
+    )
+}

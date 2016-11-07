@@ -1,0 +1,17 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+addons:
+  sonarqube: true
+
+after_success:
+  - ./gradlew test jacocoTestReport coveralls
+
+env:
+  global:
+  - secure: H5CxGXFfGTzc5m56WgOnNHBnmRd3bIyVx94rYAhy+NDSo+RlBdc2c6BbvinHx4fVaQutSU1L01hAKtxRKe7bkwTP0c4ekKmprmMASUHCLoIz02cw/pVKrW14eApXUypc9bbAW0cEHGOBRNbFCRWfoHCimEetLcIavF2dsT/Cm+QAdYFl1RXNpYx3JHJbdlhVKcBex6BOFgNqDzOm0U6Vrm6t6yRKlaDiWMwR13e8IzX85rX9Jn7K9OUPmeWqodkutHQ6R1ZhVkHRRAwImuY+rbPknLDaqZ+EYArYGZYssKdruQmpOud3nTKgXnHF+PJItC0gZyn6thyxj1amupaLLlSZzwfYe8PAZIbAkqjH1I2tqzK7vrsVTOSozymTfyHBXyDDMVr1x/HNaeA2R5hfS53n8O+dOqokgiE8yNU49XuHWOuLN+mTxZuAe+hGNpYpAa8S8oYcF0v94Wx5p4Y480h3QLniLxbXnKTtADt2qvMyWVsRc0Ln64l3xufVbBqV9KiEA5N3lN+kcEnNHgmPyfsRpEFteVdfOnF6IaVlhKbfdMdr0uFFKfMfKFhRD6d8kvUsGiJwoTNyK6ykb5UDNJhUXBKfZ2ZmT3/0S9Wh3YVXLKG1nhqTXQ3yy5cu8ptHaHictHfIPVOlTV49ipb4Pv2c4scpJSR5gsEzre4MFpc=
+
+script:
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN
