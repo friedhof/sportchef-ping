@@ -25,19 +25,23 @@ import java.net.UnknownHostException;
 @Slf4j
 public class PingService {
 
-    private String getHostname() {
-        String hostname = System.getenv("HOSTNAME");
-        if (hostname == null) {
+    private String hostname = null;
+
+    public PingService() {
+        this.hostname = System.getenv("HOSTNAME");
+        if (this.hostname == null) {
             try {
-                hostname = InetAddress.getLocalHost().getHostName();
+                this.hostname = InetAddress.getLocalHost().getHostName();
             } catch (final UnknownHostException e) {
                 log.error("Unable to determine hostname.", e);
             }
+            if (this.hostname == null) {
+                this.hostname = "unknown";
+            }
         }
-        return hostname;
     }
 
     public String getPong() {
-        return String.format("Pong from %s", getHostname());
+        return String.format("Pong from %s", this.hostname);
     }
 }
