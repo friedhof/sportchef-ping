@@ -19,10 +19,12 @@ package ch.sportchef.ping.controller;
 
 import lombok.extern.slf4j.Slf4j;
 
+import javax.inject.Singleton;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @Slf4j
+@Singleton
 public class PingService {
 
     private String hostname = null;
