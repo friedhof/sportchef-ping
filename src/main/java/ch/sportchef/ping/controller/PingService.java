@@ -22,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 import javax.inject.Singleton;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Singleton
@@ -44,6 +46,8 @@ public class PingService {
     }
 
     public String getPong() {
-        return String.format("Pong from %s", this.hostname);
+        return String.format("Pong from %s at %s.",
+                this.hostname, ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
     }
+
 }

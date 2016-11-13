@@ -19,9 +19,11 @@ package ch.sportchef.ping.controller;
 
 import org.junit.Test;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.startsWith;
 
@@ -36,9 +38,10 @@ public class PingServiceTest {
         final String pong = pingService.getPong();
 
         // assert
+        final String timeStr = ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME);
+        assertThat(pong, containsString(" at " + timeStr));
+        assertThat(pong, not(startsWith("Pong from null")));
         assertThat(pong, startsWith("Pong from "));
-        assertThat(pong, is(not("Pong from null")));
-        assertThat(pong.length(), is(greaterThan(10)));
     }
 
 }
