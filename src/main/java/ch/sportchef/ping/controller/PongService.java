@@ -17,31 +17,37 @@
  */
 package ch.sportchef.ping.controller;
 
-import org.junit.Test;
+import lombok.extern.slf4j.Slf4j;
 
+import javax.inject.Singleton;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.startsWith;
+@Slf4j
+@Singleton
+public class PongService {
 
-public class PingServiceTest {
+    private String hostname = null;
 
-    @Test
-    public void getPong() {
-        // arrange
-        final PingService pingService = new PingService();
+    public PongService() {
+        this.hostname = System.getenv("HOSTNAME");
+        if (this.hostname == null) {
+            try {
+                this.hostname = InetAddress.getLocalHost().getHostName();
+            } catch (final UnknownHostException e) {
+                log.error("Unable to determine hostname.", e);
+            }
+            if (this.hostname == null) {
+                this.hostname = "unknown";
+            }
+        }
+    }
 
-        // act
-        final String pong = pingService.getPong();
-
-        // assert
-        final String timeStr = ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME);
-        assertThat(pong, containsString(" at " + timeStr));
-        assertThat(pong, not(startsWith("Pong from null")));
-        assertThat(pong, startsWith("Pong from "));
+    public String getPong() {
+        return String.format("Pong from %s at %s.",
+                this.hostname, ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
     }
 
 }

@@ -17,7 +17,7 @@
  */
 package ch.sportchef.ping.boundary;
 
-import ch.sportchef.ping.controller.PingService;
+import ch.sportchef.ping.controller.PongService;
 import lombok.NonNull;
 
 import javax.inject.Inject;
@@ -26,20 +26,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("ping")
+@Path("pong")
 @Produces(MediaType.TEXT_PLAIN)
-public class PingResource {
+public class PongResource {
 
-    private PingService pingService;
+    private PongService pongService;
 
     @Inject
-    public PingResource(@NonNull final PingService pingService) {
-        this.pingService = pingService;
+    public PongResource(@NonNull final PongService pongService) {
+        this.pongService = pongService;
     }
 
     @GET
     public String pingPong() {
-        return pingService.getPong();
+        return pongService.getPong();
     }
 
 }
