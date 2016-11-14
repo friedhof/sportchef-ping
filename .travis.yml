@@ -14,6 +14,7 @@ after_success:
   - docker build -t sportchef/ping .
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - docker push sportchef/ping
+  - docker logout
 
 env:
   global:
