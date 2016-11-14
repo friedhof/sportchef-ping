@@ -18,28 +18,39 @@
 package ch.sportchef.ping.boundary;
 
 import ch.sportchef.ping.controller.PongService;
-import lombok.NonNull;
+import org.junit.Rule;
+import org.junit.Test;
+import org.needle4j.annotation.ObjectUnderTest;
+import org.needle4j.junit.NeedleRule;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
-@Path("pong")
-@Produces(MediaType.TEXT_PLAIN)
-public class PongResource {
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.when;
 
-    private PongService pongService;
+public class PongResourceTest {
+
+    @Rule
+    public NeedleRule needleRule = new NeedleRule();
 
     @Inject
-    public PongResource(@NonNull final PongService pongService) {
-        this.pongService = pongService;
-    }
+    private PongService pongService;
 
-    @GET
-    public String getPong() {
-        return pongService.getPong();
+    @ObjectUnderTest(postConstruct = true)
+    private PongResource pongResource;
+
+    @Test
+    public void pingPong() {
+        // arrange
+        final String testValue = "Foobar";
+        when(pongService.getPong()).thenReturn(testValue);
+
+        // act
+        final String pong = pongResource.getPong();
+
+        // assert
+        assertThat(pong, is(testValue));
     }
 
 }
