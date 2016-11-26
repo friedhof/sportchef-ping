@@ -1,7 +1,7 @@
 *SportChef Ping*
 ==================
 
-[![Build Status](https://travis-ci.org/sportchef/sportchef-ping.svg?branch=master)](https://travis-ci.org/sportchef/sportchef-ping) [![Coverage Status](https://coveralls.io/repos/github/sportchef/sportchef-ping/badge.svg?branch=master)](https://coveralls.io/github/sportchef/sportchef-ping?branch=master) [![Stories in Ready](https://badge.waffle.io/sportchef/sportchef-ping.svg?label=ready&title=Ready)](http://waffle.io/sportchef/sportchef-ping)
+[![Build Status](https://travis-ci.org/sportchef/sportchef-ping.svg?branch=master)](https://travis-ci.org/sportchef/sportchef-ping) [![Coverage Status](https://coveralls.io/repos/github/sportchef/sportchef-ping/badge.svg?branch=master)](https://coveralls.io/github/sportchef/sportchef-ping?branch=master) [![Stories in Ready](https://badge.waffle.io/sportchef/sportchef-ping.svg?label=ready&title=Ready)](http://waffle.io/sportchef/sportchef-ping) [![gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.carloscuesta.me)
 
 **This repository contains the code for the microservice handling the healthcheck pings of the *SportChef* project. For more information please take a look at our [project website](https://www.sportchef.ch/).**
 
