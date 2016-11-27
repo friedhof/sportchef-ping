@@ -64,7 +64,7 @@ dependencies {
             'org.slf4j:slf4j-simple:1.7.21'                     // just logs to the console
     )
     testCompile (
-            'fish.payara.blue.extras:payara-micro:4.1.1.163',   // embedded application server for integration tests
+            'fish.payara.blue.extras:payara-micro:4.1.1.164',   // embedded application server for integration tests
             'io.rest-assured:rest-assured:3.0.1',               // Java DSL for easy testing of REST services
             'junit:junit:4.12',                                 // THE testing framework
             'org.hamcrest:java-hamcrest:2.0.0.0',               // write flexible assertions
